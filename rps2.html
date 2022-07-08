@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //This game has 3 choices, rock, paper, and scissor. --x--
+        //When the page is loaded, the humanUser is prompted to --x--
+        //type in either rock, paper, or scissor. --x--
+            //the submission is converted toLowerCase,--x--
+            //the submission is .trimmed 
+            //the submission is returned via console.log() 
+        //The computer will Math.random -ly choose either rock, --x--
+        //paper, or scissor. --x--
+        //The answers are compared via (R>S, P>R, S>P...etc) 
+            //the winner is awarded a point eg. humanUser++ 
+            //a return('You won the round! || 'You lost the round!') 
+            //if answers are the same, it's a draw, no points awarded 
+        //The game will comprise of 5 rounds, each team starting = 0; 
+            //the first player to reach 5 points wins 
+
+
+        
+
+
+
+        function humanSelection() {
+            let humanSelect = prompt('Please type either rock, paper, or scissor...');
+            let humanLower = humanSelect.toLowerCase();
+            let humanTrim = humanLower.trim();
+                console.log(humanTrim);
+                return humanTrim;
+        }
+
+        
+        function computerSelection() {
+            let choices = ['rock', 'paper', 'scissor'];
+            let choice = choices[Math.floor(Math.random() * choices.length)]; 
+
+            console.log(choice);
+            return choice; 
+        }
+
+        //round rules
+
+      
+
+       function playRound(humanChoice, computerChoice) {
+            if (humanChoice === 'rock' && computerChoice === 'scissor' ||
+            humanChoice === 'paper' && computerChoice === 'rock' ||
+            humanChoice === 'scissor' && computerChoice === 'paper') {
+                console.log('Congratulations, you won!')
+                return playerScore++
+            } else if (computerChoice === 'rock' && humanChoice === 'scissor' ||
+            computerChoice === 'paper' && humanChoice === 'rock' ||
+            computerChoice === 'scissor' && humanChoice === 'paper') {
+                console.log('Sorry, you lost that round.')
+                return computerScore++
+            } else if (humanChoice === 'rock' && computerChoice === 'rock' ||
+            humanChoice === 'paper' && computerChoice === 'paper' ||
+            humanChoice === 'scissor' && computerChoice === 'scissor') {
+                console.log('Draw, play again.')
+            }
+        }
+  
+        function game() {
+            playerScore = 0
+            computerScore = 0
+
+            let playerChoice;
+            let computerChoice;
+
+            for (let i=0; i<5; i++) {
+                let humanChoice = humanSelection();
+                let computerChoice = computerSelection();
+                playRound(humanChoice, computerChoice);
+                console.log('Player score is ' + playerScore + ', and the Computer score is ' + computerScore)
+            if (playerScore === 5) {
+                    console.log('Congratulations, you win!')
+            } else if (computerScore === 5) {
+                    console.log('Sorry, you lost.')
+                }
+            }
+        }
+    console.log(game());
+            
+    </script>
+</body>
+</html>
